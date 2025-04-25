@@ -1,23 +1,36 @@
-
-<div>
-	
-	<div
-		class="title-wrapper title-wrapper--no-top-margin">
-		<h2 class="title inline-richtext ">Headinh 2</h2>
-	</div>
-
-</div>
-
 {% schema %}
-{
-	"name": "Section test",
-		"settings": [
-			{
-				"type": "checkbox",
-				"id": "show_soldout",
-				"label": "Show sold out products",
-				"default": false
-			}
-		]
-}
-{% endschema %}
+	{
+	  "name": "Test Section",
+	  "tag": "section",
+	  "settings": [
+		{
+		  "type": "color",
+		  "id": "bg_color",
+		  "label": "Background color",
+		  "default": "#f5f5f5"
+		},
+		{
+		  "type": "checkbox",
+		  "id": "transparent_bg",
+		  "label": "Make background transparent",
+		  "default": false
+		}
+	  ],
+	  "presets": [
+		{
+		  "name": "Test Section"
+		}
+	  ]
+	}
+	{% endschema %}
+	
+	{% assign bg_color = section.settings.bg_color %}
+	{% if section.settings.transparent_bg %}
+	  {% assign bg_color = 'transparent' %}
+	{% endif %}
+	
+	<div style="background-color: {{ bg_color }}; padding: 20px;">
+	  <h2>This is your test section!</h2>
+	  <p>You can toggle background transparency now!</p>
+	</div>
+	
